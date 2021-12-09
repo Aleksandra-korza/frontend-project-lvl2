@@ -1,0 +1,38 @@
+{
+    "name": "@hexlet/code",
+    "version": "0.1.0",
+    "description": "Hexlet frontend lvl 2",
+    "bin": {
+      "gendiff": "bin/gendiff.js"
+    },
+    "simple-git-hooks": {
+      "pre-push": "make lint"
+    },
+    "engines": {
+      "node": ">=14"
+    },
+    "scripts": {
+      "test": "npx jest --bail"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Aleksandra-korza/frontend-project-lvl2.git"
+    },
+    "author": "Aleksandra Lazarchyk",
+    "license": "ISC",
+    "type": "module",
+    "dependencies": {
+      "commander": "^8.3.0",
+      "lodash": "^4.17.21"
+    },
+    "devDependencies": {
+      "@jest/globals": "^27.3.1",
+      "eslint": "^8.3.0",
+      "eslint-config-airbnb-base": "^15.0.0",
+      "eslint-plugin-import": "^2.25.3",
+      "eslint-plugin-jest": "^25.3.0",
+      "jest": "^27.3.1",
+      "jest-cli": "^27.3.1",
+      "simple-git-hooks": "^2.7.0"
+    }
+  }

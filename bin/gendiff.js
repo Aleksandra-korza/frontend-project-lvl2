@@ -8,6 +8,6 @@ program
     .version("0.1.0")
     .description("Compares two configuration files and shows a difference.")
     .helpOption("-h, --help", "output usage information")
-    .option("-f, --format", <type></type>,  "output format")
-    .arguments()
+    //.option("-f, --format", <type></type>,  "output format")
+    //.arguments()
     .parse(process.argv);

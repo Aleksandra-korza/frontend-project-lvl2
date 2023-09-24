@@ -26,6 +26,7 @@ const gendiff = (obj1, obj2) => {
         if ((lodash.has(obj1, key)) || (lodash.has(obj2, key))) { // если  ключи совпадают
             if (obj1[key] !== obj2[key]) {
                 return [ // возвращаем ключ первого файла и второго файла // changed
+
                     { type: 'changed', key: key, children : 
                         {
                         //sign: '-',
@@ -33,6 +34,7 @@ const gendiff = (obj1, obj2) => {
                         
                         //sign: '+',
                         value: obj2[key]
+
 
                     }
                 }
@@ -51,7 +53,8 @@ const gendiff = (obj1, obj2) => {
 
     })
 
-     
+
+
     
    
     const stringify = (value, replacer = ' ', spacesCount = 1) => {

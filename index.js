@@ -6,7 +6,7 @@ const gendiff = (obj1, obj2) => {
         if (!lodash.has(obj1, key)) {  // если в первом файле нет ключа, то
             return {  // возвращаем ключ для второго файла и типируем как 'added'
                 type: 'added',
-                sign: '+',
+                //sign: '+',
                 key: key,
                 value: obj2[key]
                 // `+ ${key}: ${obj2[key]}`; 
@@ -17,7 +17,7 @@ const gendiff = (obj1, obj2) => {
         if (!lodash.has(obj2, key)) {  //  если во втором файле нет ключа , то 
             return {  // записываем ключь первого файла и типируем как 'removed'
                 type: 'removed',
-                sign: '-',
+                //sign: '-',
                 key: key,
                 value: obj1[key]
                // `- ${key}: ${obj1[key]}`; 
@@ -26,51 +26,32 @@ const gendiff = (obj1, obj2) => {
         if ((lodash.has(obj1, key)) || (lodash.has(obj2, key))) { // если  ключи совпадают
             if (obj1[key] !== obj2[key]) {
                 return [ // возвращаем ключ первого файла и второго файла // changed
-                    {
-                        type: 'changed', // '-'
-                        sign: '-',
-                        key: key,
-                        value: obj1[key]
-                        // `- ${key}: ${obj1[key]}`; 
-                    },
-                    {
-                        type: 'changed', // '+'
-                        sign: '+',
-                        key: key,
+                    { type: 'changed', key: key, children : 
+                        {
+                        //sign: '-',
+                        value: obj1[key],
+                        
+                        //sign: '+',
                         value: obj2[key]
 
-                        // `+ ${key}: ${obj2[key]}`; // вот так записать и проверить какой будет вывод????
                     }
+                }
                 ]
             }
 
             return {  // возвращаем ключ первого файла //unchanged
                 type: 'unchanged', // ' '
-                sign: ' ',
+                //sign: ' ',
                 key: key,
                 value: obj1[key]
 
-                // ` ${key}: ${obj1[key]}`; //может вместо формирования объекта, так записать???? 
-            }  
+                }  
 
         }
 
     })
 
-    // const structuredResult = (obj) => {
-
-    //     const signs = {
-    //         added: '+',
-    //         removed: '-',
-    //         changed1: '-',
-    //         changed2: '+',
-    //         unchanged: ' ',
-    //       };
-
-    //      return `{sign} ` 
-    // }
-
-    
+     
     
    
     const stringify = (value, replacer = ' ', spacesCount = 1) => {

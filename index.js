@@ -6,33 +6,43 @@ function gendiff(obj1, obj2) {
 
 
     const keys = lodash.sortBy(lodash.union(lodash.keys(obj1), lodash.keys(obj2))); // набор уникальных ключей двух файлов
-    
-    const tree = {};
 
-    const keyFiltr = keys.flatMap((key) => {
+let tree = {};
+
+    let keyFiltr = keys.reduce((tree, key) => {
 
         if (!lodash.has(obj1, key)) { // если в первом файле нет ключа, то
-            if (_.isObject(obj1[key])) {
-               return gendiff(obj1[key]);
+
+            if (_.isObject(obj2[key])) {
+
+            return gendiff(obj2[key]);
             }
-            return {
+            return  tree, {
                 type: 'added',
                 //sign: '+',
                 key: key,
                 value: obj2[key]
-            };
+            }
+            
         }
+        
         if (!lodash.has(obj2, key)) {  //  если во втором файле нет ключа , то 
-            return {
-                type: 'removed',
+
+            if (_.isObject(obj1[key])) {
+
+                gendiff(obj1[key]);
+             }
+
+            return tree, 
+                {type: 'removed',
                 //sign: '-',
                 key: key,
-                value: obj1[key],
-            }
+                value: obj1[key]}
+            
         }
         if ((lodash.has(obj1, key)) || (lodash.has(obj2, key))) { // если  ключи совпадают
             if ((obj1[key] !== obj2[key]) && (!_.isObject(obj2[key]))) {
-                return [
+                 return [
                     {
                         type: 'changed',
                         key: key,
@@ -46,7 +56,7 @@ function gendiff(obj1, obj2) {
                 ];
             }
             else if ((obj1[key] !== obj2[key]) && (_.isObject(obj1[key]) || (_.isObject(obj2[key])))) {
-                 return gendiff(obj1[key], obj2[key]);
+                 gendiff(obj1[key], obj2[key]);
                  //{
                 //     key: key,
                 //     type: 'changed',
@@ -59,8 +69,11 @@ function gendiff(obj1, obj2) {
                 key: key,
                 value: obj1[key]
             };
+
         }
-    });
+
+        
+    }, {});
 
 
     const stringify = (value, replacer = ' ', spacesCount = 1) => {
@@ -91,7 +104,10 @@ function gendiff(obj1, obj2) {
     };
 
 
-    return keyFiltr.flat();
+    //return 
+   // keyFiltr.flat();
+
+    return keyFiltr;
 
 
     //return stringify(keyFiltr.flat());

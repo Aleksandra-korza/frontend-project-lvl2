@@ -15,9 +15,9 @@ let tree = {};
 
             if (_.isObject(obj2[key])) {
 
-            return gendiff(obj2[key]);
+            gendiff(obj2[key]);
             }
-            return  tree, {
+            return tree = {
                 type: 'added',
                 //sign: '+',
                 key: key,
@@ -33,7 +33,7 @@ let tree = {};
                 gendiff(obj1[key]);
              }
 
-            return tree, 
+            return tree =  
                 {type: 'removed',
                 //sign: '-',
                 key: key,

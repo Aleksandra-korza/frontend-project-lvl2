@@ -2,10 +2,7 @@ import lodash from 'lodash';
 
 function gendiff(obj1, obj2) {
 
-  
-
   const buildNewObj = (obj1, obj2) => {
-
     const keys = lodash.sortBy(lodash.union(lodash.keys(obj1), lodash.keys(obj2)));
 
     return keys.map((key) => {
@@ -38,7 +35,7 @@ function gendiff(obj1, obj2) {
 
     const str = Object.entries(carentValue).map(([key, val]) => `${currentIndent} ${key}: ${stringify(val, deph + 1, replacer)}`);
 
-       return ['{', ...str, `${indentForSign}}`].join('\n');
+    return ['{', ...str, `${indentForSign}}`].join('\n');
   };
 
   const signs = {
@@ -49,29 +46,23 @@ function gendiff(obj1, obj2) {
     function styl(obj, depth) {
       const styleLine = obj.map((miniObj) => {
         const indent = replacer.repeat(depth);
-        
+
         const indentForSign = indent.slice(2);
-        
 
         function makeLine(value, sign) {
-          
           return (`${indentForSign}${sign} ${miniObj.key}: ${stringify(value, depth, replacer)}`);
         }
 
         if (miniObj.type === 'added') {
-          
           return makeLine(miniObj.value, signs.added);
         }
         if (miniObj.type === 'removed') {
-          
           return makeLine(miniObj.value, signs.removed);
         }
         if (miniObj.type === 'unchanged') {
-         
           return makeLine(miniObj.value, signs.unchanged);
         }
         if (miniObj.type === 'changed') {
-          
           return [`${makeLine(miniObj.value1, signs.removed)}`,
             `${makeLine(miniObj.value2, signs.added)}`].join('\n');
         }
@@ -88,13 +79,8 @@ function gendiff(obj1, obj2) {
   };
 
   return stylish(buildNewObj(obj1, obj2));
-  // return stylish(obj1, obj2);
+  
 
-  // return gendiff(obj1, obj2);
-
-  // return stringify(keyFiltr(obj1, obj2));
-
-  // return stringify(stylish(keyFiltr(obj1, obj2)));
-}
+};
 
 export default gendiff;

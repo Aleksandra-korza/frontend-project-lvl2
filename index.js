@@ -1,6 +1,6 @@
 import lodash from 'lodash';
 
-function gendiff(obj1, obj2) {
+function gendiff(obj11, obj22) {
   const buildNewObj = (obj1, obj2) => {
     const keys = lodash.sortBy(lodash.union(lodash.keys(obj1), lodash.keys(obj2)));
 
@@ -87,7 +87,7 @@ function gendiff(obj1, obj2) {
   };
 
   return stylish(buildNewObj(obj1, obj2));
-  //return stylish(obj1, obj2);
+  // return stylish(obj1, obj2);
 
   // return gendiff(obj1, obj2);
 

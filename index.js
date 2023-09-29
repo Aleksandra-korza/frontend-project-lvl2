@@ -1,96 +1,97 @@
 import lodash from 'lodash';
-import _ from 'lodash';
 
 function gendiff(obj1, obj2) {
-  const keys = lodash.sortBy(lodash.union(lodash.keys(obj1), lodash.keys(obj2))); // набор уникальных ключей двух файлов
+  const keys = lodash.sortBy(lodash.union(lodash.keys(obj1), lodash.keys(obj2)));
 
-  const tree = {};
-
-  const keyFiltr = keys.reduce((tree, key) => {
-    if (!lodash.has(obj1, key)) { // если в первом файле нет ключа, то
-      if (_.isObject(obj2[key])) {
-        gendiff(obj2[key]);
-      }
-      return tree = {
-        type: 'added',
-        // sign: '+',
-        key,
-        value: obj2[key],
-      };
+  const keyFiltr = keys.map((key) => {
+    if (!lodash.has(obj1, key)) {
+      return { key, type: 'added', value: obj2[key] };
     }
-
-    if (!lodash.has(obj2, key)) { //  если во втором файле нет ключа , то
-      if (_.isObject(obj1[key])) {
-        gendiff(obj1[key]);
-      }
-
-      return tree = {
-        type: 'removed',
-        // sign: '-',
-        key,
-        value: obj1[key],
-      };
+    if (!lodash.has(obj2, key)) {
+      return { key, type: 'removed', value: obj1[key] };
     }
-    if ((lodash.has(obj1, key)) || (lodash.has(obj2, key))) { // если  ключи совпадают
-      if ((obj1[key] !== obj2[key]) && (!_.isObject(obj2[key]))) {
-        return [
-          {
-            type: 'changed',
-            key,
-            // sign: '-',
-            value: obj1[key],
-
-            // sign: '+',
-            value2: obj2[key],
-            // children: []
-          },
-        ];
-      }
-      if ((obj1[key] !== obj2[key]) && (_.isObject(obj1[key]) || (_.isObject(obj2[key])))) {
-        gendiff(obj1[key], obj2[key]);
-        // {
-        //     key: key,
-        //     type: 'changed',
-        //     value: gendiff(obj1[key], obj2[key])
-        // };
-      }
+    if (lodash.isObject(obj1[key]) && lodash.isObject(obj2[key])) {
+      return { key, type: 'nested', value: keyFiltr(obj1[key], obj2[key]) };
+    }
+    if (!lodash.isEqual(obj1[key], obj2[key])) {
       return {
-        type: 'unchanged',
-        // sign: ' ',
-        key,
-        value: obj1[key],
+        key, type: 'changed', value1: obj1[key], value2: obj2[key],
       };
     }
-  }, {});
 
-  const stringify = (value, replacer = ' ', spacesCount = 1) => {
-    const iter = (carentValue, deph) => {
-      if (typeof carentValue !== 'object' || carentValue === null) {
-        return String(carentValue);
-      }
+    return { key, type: 'unchanged', value: obj1[key] };
+  });
 
-      const indenSize = spacesCount * deph;
-      const currentIndent = replacer.repeat(indenSize);
-      const bracetIndent = replacer.repeat(indenSize - spacesCount);
+  const stringify = (carentValue, deph, replacer = ' ') => {
+    if (!lodash.isObject(carentValue)) {
+      return `${carentValue}`;
+    }
 
-      const array = Object.entries(carentValue);
+    const currentIndent = replacer.repeat(deph + 1);
+    const indentForSign = currentIndent.slice(2);
 
-      const str = array.map(([key, val]) => `${currentIndent}${key}: ${iter(val, deph + 4)}`);
+    const str = Object.entries(carentValue).map(([key, val]) => `${currentIndent} ${key}: ${stringify(val, deph + 1, replacer)}`);
 
-      const result = ['{', ...str, `${bracetIndent}}`].join('\n');
+    // console.log(currentIndent);
 
-      return result;
-    };
-
-    return iter(value, 1);
+    return ['{', ...str, `${indentForSign}}`].join('\n');
   };
 
-  // return
-  // keyFiltr.flat();
+  const signs = {
+    added: '+', removed: '-', unchanged: ' ',
+  };
 
-  return keyFiltr;
+  const stylish = (newObj1, replacer = '    ') => {
+    function styl(obj, depth) {
+      const styleLine = obj.map((miniObj) => {
+        const indent = replacer.repeat(depth);
+        // console.log(indent);
+        const indentForSign = indent.slice(2);
+        // console.log(indentForSign);
 
-  // return stringify(keyFiltr.flat());
+        function makeLine(value, sign) {
+          // console.log(value, mark);
+          return (`${indentForSign}${sign} ${miniObj.key}: ${stringify(value, depth, replacer)}`);
+        }
+
+        if (miniObj.type === 'added') {
+          // console.log(makeLine(miniObj.value, sign.added));
+          return makeLine(miniObj.value, signs.added);
+        }
+        if (miniObj.type === 'removed') {
+          // console.log(makeLine(miniObj.value, sign.removed));
+          return makeLine(miniObj.value, signs.removed);
+        }
+        if (miniObj.type === 'unchanged') {
+          // console.log(makeLine(miniObj.value, sign.unchanged));
+          return makeLine(miniObj.value, signs.unchanged);
+        }
+        if (miniObj.type === 'changed') {
+          // console.log([`${makeLine(miniObj.value1, sign.deleted)}`,
+          // `${makeLine(miniObj.value2, sign.added)}`].join('\n'));
+          return [`${makeLine(miniObj.value1, signs.deleted)}`,
+            `${makeLine(miniObj.value2, signs.added)}`].join('\n');
+        }
+        if (miniObj.type === 'nested') {
+          return `${indent}${miniObj.key}: ${['{', ...styl(miniObj.value, depth + 1), `${indent}}`].join('\n')}`;
+        }
+        return `Type: ${miniObj.type} is undefined`;
+      });
+      return styleLine;
+    }
+    const stylishDiff = styl(newObj1, 1);
+
+    return (['{', ...stylishDiff, '}'].join('\n'));
+  };
+
+  // stylish(keyFiltr(obj1, obj2));
+  return stylish(keyFiltr);
+
+  // return gendiff(obj1, obj2);
+
+  // return stringify(keyFiltr(obj1, obj2));
+
+  // return stringify(stylish(keyFiltr(obj1, obj2)));
 }
 
 export default gendiff;

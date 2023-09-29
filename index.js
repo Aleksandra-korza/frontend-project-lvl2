@@ -1,7 +1,11 @@
 import lodash from 'lodash';
 
 function gendiff(obj1, obj2) {
+
+  
+
   const buildNewObj = (obj1, obj2) => {
+
     const keys = lodash.sortBy(lodash.union(lodash.keys(obj1), lodash.keys(obj2)));
 
     return keys.map((key) => {
@@ -34,9 +38,7 @@ function gendiff(obj1, obj2) {
 
     const str = Object.entries(carentValue).map(([key, val]) => `${currentIndent} ${key}: ${stringify(val, deph + 1, replacer)}`);
 
-    // console.log(currentIndent);
-
-    return ['{', ...str, `${indentForSign}}`].join('\n');
+       return ['{', ...str, `${indentForSign}}`].join('\n');
   };
 
   const signs = {
@@ -47,30 +49,29 @@ function gendiff(obj1, obj2) {
     function styl(obj, depth) {
       const styleLine = obj.map((miniObj) => {
         const indent = replacer.repeat(depth);
-        // console.log(indent);
+        
         const indentForSign = indent.slice(2);
-        // console.log(indentForSign);
+        
 
         function makeLine(value, sign) {
-          // console.log(value, mark);
+          
           return (`${indentForSign}${sign} ${miniObj.key}: ${stringify(value, depth, replacer)}`);
         }
 
         if (miniObj.type === 'added') {
-          // console.log(makeLine(miniObj.value, sign.added));
+          
           return makeLine(miniObj.value, signs.added);
         }
         if (miniObj.type === 'removed') {
-          // console.log(makeLine(miniObj.value, sign.removed));
+          
           return makeLine(miniObj.value, signs.removed);
         }
         if (miniObj.type === 'unchanged') {
-          // console.log(makeLine(miniObj.value, sign.unchanged));
+         
           return makeLine(miniObj.value, signs.unchanged);
         }
         if (miniObj.type === 'changed') {
-          // console.log([`${makeLine(miniObj.value1, sign.deleted)}`,
-          // `${makeLine(miniObj.value2, sign.added)}`].join('\n'));
+          
           return [`${makeLine(miniObj.value1, signs.removed)}`,
             `${makeLine(miniObj.value2, signs.added)}`].join('\n');
         }

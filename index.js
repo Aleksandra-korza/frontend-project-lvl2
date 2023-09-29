@@ -71,7 +71,7 @@ function gendiff(obj1, obj2) {
         if (miniObj.type === 'changed') {
           // console.log([`${makeLine(miniObj.value1, sign.deleted)}`,
           // `${makeLine(miniObj.value2, sign.added)}`].join('\n'));
-          return [`${makeLine(miniObj.value1, signs.deleted)}`,
+          return [`${makeLine(miniObj.value1, signs.removed)}`,
             `${makeLine(miniObj.value2, signs.added)}`].join('\n');
         }
         if (miniObj.type === 'nested') {

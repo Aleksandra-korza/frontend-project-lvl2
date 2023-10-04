@@ -1,6 +1,28 @@
 import lodash from 'lodash';
+import fs from 'fs';
+import * as path from 'path';
+ 
+const takeData = (filepath) => {
+
+  const path1 = path.resolve(process.cwd(), '_fixtures_', filepath); // конструируем полный путь process.cwd()
+
+const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
+
+const obj = JSON.parse(file); // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
+
+return obj;
+
+}
+
+
+
+
 
 function gendiff(obj11, obj22) {
+
+const obj111 = takeData(obj11);
+const obj222 = takeData(obj22);
+
   const buildNewObj = (obj1, obj2) => {
     const keys = lodash.sortBy(lodash.union(lodash.keys(obj1), lodash.keys(obj2)));
 
@@ -32,7 +54,7 @@ function gendiff(obj11, obj22) {
     const currentIndent = replacer.repeat(deph + 1);
     const indentForSign = currentIndent.slice(2);
 
-    const str = Object.entries(carentValue).map(([key, val]) => `${currentIndent} ${key}: ${stringify(val, deph + 1, replacer)}`);
+    const str = Object.entries(carentValue).map(([key, val]) => `${currentIndent}${key}: ${stringify(val, deph + 1, replacer)}`);
 
     return ['{', ...str, `${indentForSign}}`].join('\n');
   };
@@ -75,9 +97,10 @@ function gendiff(obj11, obj22) {
     const stylishDiff = styl(newObj1, 1);
 
     return (['{', ...stylishDiff, '}'].join('\n'));
+
   };
 
-  return stylish(buildNewObj(obj11, obj22));
+  return stylish(buildNewObj(obj111, obj222));
 }
 
 export default gendiff;

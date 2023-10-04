@@ -1,9 +1,11 @@
-const stringify = (carentValue, deph, replacer = ' ') => {
+import lodash from 'lodash';
+import buildNewObj from '../index.js';
+
+const stringify = (carentValue, deph, replacer) => {
     if (!lodash.isObject(carentValue)) {
       return `[complex value]`;
     }
 
-    
 
     const str = Object.entries(carentValue).map(([key, val]) => `${currentIndent} ${key}: ${stringify(val, deph + 1, replacer)}`);
 
@@ -11,32 +13,32 @@ const stringify = (carentValue, deph, replacer = ' ') => {
   };
 
  
-  const stylish = (newObj1, replacer = '    ') => {
+  const plain = (newObj1, replacer = '    ') => {
     function styl(obj, depth) {
-      const styleLine = obj.map((miniObj) => {
+      const plain = obj.map((miniObj) => {
         const indent = replacer.repeat(depth);
 
         const indentForSign = indent.slice(2);
 
-        function makeLine(value, sign) {
-          return (`${indentForSign}${sign} ${miniObj.key}: ${stringify(value, depth, replacer)}`);
+        function makeLine(value) {
+          return (`Property ${miniObj.key}.${value}`);
         }
 
         if (miniObj.type === 'added') {
-          return makeLine(miniObj.value, signs.added);  // Property 'common.follow' was added with value: false  // Property 'group3' was added with value: [complex value]
+          return (`${makeLine(miniObj.value)}was added with value:${key.value}`);  // Property 'common.follow' was added with value: false  // Property 'group3' was added with value: [complex value]
         }
         if (miniObj.type === 'removed') {  //Property 'common.setting2' was removed  
-          return makeLine(miniObj.value, signs.removed);
+          return (`${makeLine(miniObj.value)}was removed`);
         }
-        if (miniObj.type === 'unchanged') {
-          return makeLine(miniObj.value, signs.unchanged);
+        if (miniObj.type === 'unchanged') { // Property 'common.follow' was added with value: false 
+          return (`${makeLine(miniObj.value)}was added with value:${key.value}`); 
         }
-        if (miniObj.type === 'changed') { // Property 'group1.nest' was updated. From [complex value] to 'str'
-          return [`${makeLine(miniObj.value1, signs.removed)}`,
-            `${makeLine(miniObj.value2, signs.added)}`].join('\n');
+        if (miniObj.type === 'changed') {  // Property 'common.setting3' was updated. From true to null
+          return `${makeLine(miniObj.value1)} was updated. From ${miniObj.value1} to ${miniObj.value2}`.join('\n');
+        
         }
         if (miniObj.type === 'nested') {
-          return `${indent}${miniObj.key}: ${['{', ...styl(miniObj.value, depth + 1), `${indent}}`].join('\n')}`;
+          return (`${makeLine(miniObj.key)} was added with value: ${stringify((miniObj.value), depth + 1)}`).join('\n');
         }
         return `Type: ${miniObj.type} is undefined`;
       });
@@ -47,3 +49,7 @@ const stringify = (carentValue, deph, replacer = ' ') => {
     return (['{', ...stylishDiff, '}'].join('\n'));
 
   };
+
+  return plain(buildNewObj(obj11, obj22)); 
+  
+export default plain;

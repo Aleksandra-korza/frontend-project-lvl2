@@ -1,29 +1,22 @@
 import lodash from 'lodash';
 import fs from 'fs';
-import * as path from 'path';
- 
-const takeData = (filepath) => {
+import path from 'path';
 
+const takeData = (filepath) => {
   const path1 = path.resolve(process.cwd(), '_fixtures_', filepath); // конструируем полный путь process.cwd()
 
-const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
+  const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
 
-const obj = JSON.parse(file); // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
+  const obj = JSON.parse(file); // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
 
-return obj;
-
-}
-
-
-
-
+  return obj;
+};
 
 function gendiff(obj11, obj22) {
+  const buildNewObj = (obj111, obj222) => {
+    const obj1 = takeData(obj111);
+    const obj2 = takeData(obj222);
 
-const obj111 = takeData(obj11);
-const obj222 = takeData(obj22);
-
-  const buildNewObj = (obj1, obj2) => {
     const keys = lodash.sortBy(lodash.union(lodash.keys(obj1), lodash.keys(obj2)));
 
     return keys.map((key) => {
@@ -46,7 +39,7 @@ const obj222 = takeData(obj22);
     });
   };
 
-  const stringify = (carentValue, deph, replacer = ' ') => {
+  const stringify = (carentValue, deph, replacer = '') => {
     if (!lodash.isObject(carentValue)) {
       return `${carentValue}`;
     }
@@ -97,10 +90,9 @@ const obj222 = takeData(obj22);
     const stylishDiff = styl(newObj1, 1);
 
     return (['{', ...stylishDiff, '}'].join('\n'));
-
   };
 
-  return stylish(buildNewObj(obj111, obj222));
+  return stylish(buildNewObj(obj11, obj22));
 }
 
 export default gendiff;

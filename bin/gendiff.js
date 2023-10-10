@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
 import { program } from 'commander'; // исполняемый файл  в папке bin.
-// import fs from 'fs';
-// import path from 'path';
 import gendiff from '../index.js';
 
 program

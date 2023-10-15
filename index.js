@@ -1,26 +1,21 @@
 import lodash from 'lodash';
 import fs from 'fs';
 import * as path from 'path';
-//import stylish from './bin/formatters/stylish.js';
-import plain from './bin/formatters/plain.js';
- 
+import selectFormat from './bin/formatters/index.js';
+
 const takeData = (filepath) => {
+  const path1 = path.resolve(process.cwd() , '_fixtures_', filepath); // конструируем полный путь process.cwd()
 
-const path1 = path.resolve(process.cwd(), '_fixtures_', filepath); // конструируем полный путь process.cwd()
+  const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
 
-const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
+  const obj = JSON.parse(file); // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
 
-const obj = JSON.parse(file); // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
+  return obj;
+};
 
-return obj;
-
-}
-
-
-function gendiff(obj11, obj22) {
-
-const obj111 = takeData(obj11);
-const obj222 = takeData(obj22);
+function gendiff(obj11, obj22, format) {
+  const obj111 = takeData(obj11);
+  const obj222 = takeData(obj22);
 
   const buildNewObj = (obj1, obj2) => {
     const keys = lodash.sortBy(lodash.union(lodash.keys(obj1), lodash.keys(obj2)));
@@ -45,8 +40,9 @@ const obj222 = takeData(obj22);
     });
   };
 
-  //return stylish(buildNewObj(obj111, obj222));
-  return plain(buildNewObj(obj111, obj222));
+  const tree = buildNewObj(obj111, obj222);
+  
+  return selectFormat(tree, format);
 }
 
 export default gendiff;

@@ -10,5 +10,13 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '_fixtures_', filename);
 
 test('gendiff', () => {
-  expect(gendiff('file1.json', 'file2.json')).toBe(fs.readFileSync(getFixturePath('resultGendiff.txt'), 'utf-8'));
+  expect(gendiff('file1.json', 'file2.json')).toBe(fs.readFileSync(getFixturePath('resultStylish.txt'), 'utf-8'));
+});
+
+test('gendiff - plain', () => {
+  expect(gendiff('file1.json', 'file2.json')).toBe(fs.readFileSync(getFixturePath('resultPlain.txt'), 'utf-8'));
+});
+
+test('gendiff - json', () => {
+  expect(gendiff('file1.json', 'file2.json')).toBe(fs.readFileSync(getFixturePath('resultJson.txt'), 'utf-8'));
 });

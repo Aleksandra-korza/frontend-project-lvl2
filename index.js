@@ -24,8 +24,7 @@ const takeData = (filepath) => {
 
     return obj;
   }
-  
-   
+  return `Unknown file extension : '${filepath}'.`;
 };
 
 function gendiff(obj11, obj22, format) {

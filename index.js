@@ -4,7 +4,7 @@ import * as path from 'path';
 import selectFormat from './bin/formatters/index.js';
 
 const takeData = (filepath) => {
-  const path1 = path.resolve(process.cwd() , '_fixtures_', filepath); // конструируем полный путь process.cwd()
+  const path1 = path.resolve(process.cwd(), '_fixtures_', filepath); // конструируем полный путь process.cwd()
 
   const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
 
@@ -41,7 +41,7 @@ function gendiff(obj11, obj22, format) {
   };
 
   const tree = buildNewObj(obj111, obj222);
-  
+
   return selectFormat(tree, format);
 }
 

@@ -50,7 +50,7 @@ const stylish = (newObj1, replacer = '    ') => {
   }
   const stylishDiff = styl(newObj1, 1);
 
-  return (['{', ...stylishDiff, '}\n'].join('\n'));
+  return (['{', ...stylishDiff, '}'].join('\n'));
 };
 
 export default stylish;

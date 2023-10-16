@@ -3,6 +3,8 @@ import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import fs from 'fs';
 import gendiff from '../index.js';
+import json from '../bin/formatters/json.js';
+import plain from '../bin/formatters/plain.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -13,10 +15,10 @@ test('gendiff', () => {
   expect(gendiff('file1.json', 'file2.json')).toBe(fs.readFileSync(getFixturePath('resultStylish.txt'), 'utf-8'));
 });
 
-test('gendiff - plain', () => {
-  expect(gendiff('file1.json', 'file2.json')).toBe(fs.readFileSync(getFixturePath('resultPlain.txt'), 'utf-8'));
+test('gendiff-plain', () => {
+  expect(gendiff('file1.json', 'file2.json', 'plain')).toBe(fs.readFileSync(getFixturePath('resultPlain.txt'), 'utf-8'));
 });
 
-test('gendiff - json', () => {
-  expect(gendiff('file1.json', 'file2.json')).toBe(fs.readFileSync(getFixturePath('resultJson.txt'), 'utf-8'));
+test('gendiff-json', () => {
+  expect(gendiff('file1.json', 'file2.json', 'json')).toBe(fs.readFileSync(getFixturePath('resultJson.txt'), 'utf-8'));
 });

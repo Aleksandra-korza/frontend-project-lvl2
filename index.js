@@ -2,8 +2,11 @@ import lodash from 'lodash';
 import fs from 'fs';
 import * as path from 'path';
 import selectFormat from './bin/formatters/index.js';
+import yaml from 'js-yaml';
 
 const takeData = (filepath) => {
+
+  if (path.extname(filepath) === '.json') {
   const path1 = path.resolve(process.cwd(), '_fixtures_', filepath); // конструируем полный путь process.cwd()
 
   const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
@@ -11,9 +14,22 @@ const takeData = (filepath) => {
   const obj = JSON.parse(file); // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
 
   return obj;
+  }
+
+  if (path.extname(filepath) === '.yml' || path.extname(filepath) === '.yaml') {
+    const path1 = path.resolve(process.cwd(), '_fixtures_', filepath); // конструируем полный путь process.cwd()
+  
+    const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
+  
+    const obj = yaml.load(file); // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
+  
+    return obj;
+    }
+
 };
 
 function gendiff(obj11, obj22, format) {
+
   const obj111 = takeData(obj11);
   const obj222 = takeData(obj22);
 

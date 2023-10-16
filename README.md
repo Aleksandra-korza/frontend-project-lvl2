@@ -4,11 +4,10 @@
 [![Build Status](https://github.com/Aleksandra-korza/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/Aleksandra-korza/)
 
 stylish 
-https://asciinema.org/connect/e98e2f18-e789-42b9-b2dc-63b7cbedbcf5
+[![asciicast](https://asciinema.org/a/SeJJ8LnyuS3amG0AWv4Rx2ED9.svg)](https://asciinema.org/a/SeJJ8LnyuS3amG0AWv4Rx2ED9)
 
 plain
-https://asciinema.org/connect/e98e2f18-e789-42b9-b2dc-63b7cbedbcf5
+[![asciicast](https://asciinema.org/a/KP9VOjnTidbflzj9Jl3Vt7Jed.svg)](https://asciinema.org/a/KP9VOjnTidbflzj9Jl3Vt7Jed)
 
 json
- https://asciinema.org/connect/e98e2f18-e789-42b9-b2dc-63b7cbedbcf5
- 
+[![asciicast](https://asciinema.org/a/614732.svg)](https://asciinema.org/a/614732)

@@ -3,8 +3,6 @@ import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import fs from 'fs';
 import gendiff from '../index.js';
-import json from '../bin/formatters/json.js';
-import plain from '../bin/formatters/plain.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

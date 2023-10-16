@@ -24,6 +24,7 @@ const takeData = (filepath) => {
 
     return obj;
   }
+
   return `Unknown file extension : '${filepath}'.`;
 };
 

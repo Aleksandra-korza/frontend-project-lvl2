@@ -7,27 +7,15 @@ import selectFormat from './bin/formatters/index.js';
 const takeData = (filepath) => {
 
   const path1 = path.resolve(process.cwd(), '__fixtures__', filepath); // конструируем полный путь process.cwd()
-
-    const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
-
+  const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
 
   if (path.extname(filepath) === '.json') {
-    // const path1 = path.resolve(process.cwd(), '__fixtures__', filepath); // конструируем полный путь process.cwd()
-
-    // const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
-
     const obj = JSON.parse(file); // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
-
     return obj;
   }
 
   if (path.extname(filepath) === '.yml' || path.extname(filepath) === '.yaml') {
-    // const path1 = path.resolve(process.cwd(), '__fixtures__', filepath); // конструируем полный путь process.cwd()
-
-    // const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
-
     const obj = yaml.load(file); // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
-
     return obj;
   }
 

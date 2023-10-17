@@ -14,12 +14,11 @@ const takeData = (filepath) => {
   }
 
   if (path.extname(filepath) === '.yml' || path.extname(filepath) === '.yaml') {
-    const obj = yaml.load(file); // расп. файлы yaml.load(file):из yaml строки->в вид обj
+    const obj = yaml.load(file); // расп.файлы yaml.load(file):из yamlстроки->в видобj
     return obj;
   }
   return `Unknown file extension : '${filepath}'.`;
 };
-
 
 function gendiff(file1, file2, format) {
   const object1 = takeData(file1);

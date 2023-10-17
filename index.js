@@ -28,9 +28,9 @@ const takeData = (filepath) => {
   return `Unknown file extension : '${filepath}'.`;
 };
 
-function gendiff(obj11, obj22, format) {
-  const obj111 = takeData(obj11);
-  const obj222 = takeData(obj22);
+function gendiff(file1, file2, format) {
+  const obj1 = takeData(file1);
+  const obj2 = takeData(file2);
 
   const buildNewObj = (obj1, obj2) => {
     const keys = lodash.sortBy(lodash.union(lodash.keys(obj1), lodash.keys(obj2)));
@@ -55,7 +55,7 @@ function gendiff(obj11, obj22, format) {
     });
   };
 
-  const tree = buildNewObj(obj111, obj222);
+  const tree = buildNewObj(obj1, obj2);
 
   return selectFormat(tree, format);
 }

@@ -13,6 +13,10 @@ test('gendiff', () => {
   expect(gendiff('file1.json', 'file2.json')).toBe(fs.readFileSync(getFixturePath('resultStylish.txt'), 'utf-8'));
 });
 
+test('gendiff', () => {
+  expect(gendiff('file1.json', 'file2.json', 'stylish')).toBe(fs.readFileSync(getFixturePath('resultStylish.txt'), 'utf-8'));
+});
+
 test('gendiff-plain', () => {
   expect(gendiff('file1.json', 'file2.json', 'plain')).toBe(fs.readFileSync(getFixturePath('resultPlain.txt'), 'utf-8'));
 });

@@ -5,10 +5,16 @@ import yaml from 'js-yaml';
 import selectFormat from './bin/formatters/index.js';
 
 const takeData = (filepath) => {
-  if (path.extname(filepath) === '.json') {
-    const path1 = path.resolve(process.cwd(), '__fixtures__', filepath); // конструируем полный путь process.cwd()
+
+  const path1 = path.resolve(process.cwd(), '__fixtures__', filepath); // конструируем полный путь process.cwd()
 
     const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
+
+
+  if (path.extname(filepath) === '.json') {
+    // const path1 = path.resolve(process.cwd(), '__fixtures__', filepath); // конструируем полный путь process.cwd()
+
+    // const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
 
     const obj = JSON.parse(file); // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
 
@@ -16,9 +22,9 @@ const takeData = (filepath) => {
   }
 
   if (path.extname(filepath) === '.yml' || path.extname(filepath) === '.yaml') {
-    const path1 = path.resolve(process.cwd(), '__fixtures__', filepath); // конструируем полный путь process.cwd()
+    // const path1 = path.resolve(process.cwd(), '__fixtures__', filepath); // конструируем полный путь process.cwd()
 
-    const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
+    // const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
 
     const obj = yaml.load(file); // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
 
@@ -29,8 +35,8 @@ const takeData = (filepath) => {
 };
 
 function gendiff(file1, file2, format) {
-  const obj1 = takeData(file1);
-  const obj2 = takeData(file2);
+  const object1 = takeData(file1);
+  const object2 = takeData(file2);
 
   const buildNewObj = (obj1, obj2) => {
     const keys = lodash.sortBy(lodash.union(lodash.keys(obj1), lodash.keys(obj2)));
@@ -55,7 +61,7 @@ function gendiff(file1, file2, format) {
     });
   };
 
-  const tree = buildNewObj(obj1, obj2);
+  const tree = buildNewObj(object1, object2);
 
   return selectFormat(tree, format);
 }

@@ -3,6 +3,10 @@
 
 [![Build Status](https://github.com/Aleksandra-korza/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/Aleksandra-korza/)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/81181b9a43402b44ee36/maintainability)](https://codeclimate.com/github/Aleksandra-korza/frontend-project-lvl2/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/81181b9a43402b44ee36/test_coverage)](https://codeclimate.com/github/Aleksandra-korza/frontend-project-lvl2/test_coverage)
+
 stylish 
 [![asciicast](https://asciinema.org/a/SeJJ8LnyuS3amG0AWv4Rx2ED9.svg)](https://asciinema.org/a/SeJJ8LnyuS3amG0AWv4Rx2ED9)
 

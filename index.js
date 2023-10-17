@@ -5,7 +5,6 @@ import yaml from 'js-yaml';
 import selectFormat from './bin/formatters/index.js';
 
 const takeData = (filepath) => {
-
   const path1 = path.resolve(process.cwd(), '__fixtures__', filepath); // конструируем полный путь process.cwd()
   const file = fs.readFileSync(path1, 'utf-8'); // fs - модуль для работы с файловой системой на JS,
 
@@ -15,12 +14,12 @@ const takeData = (filepath) => {
   }
 
   if (path.extname(filepath) === '.yml' || path.extname(filepath) === '.yaml') {
-    const obj = yaml.load(file); // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
+    const obj = yaml.load(file); // расп. файлы yaml.load(file):из yaml строки->в вид обj
     return obj;
   }
-
   return `Unknown file extension : '${filepath}'.`;
 };
+
 
 function gendiff(file1, file2, format) {
   const object1 = takeData(file1);

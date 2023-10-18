@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { program } from 'commander'; // исполняемый файл  в папке bin.
-import gendiff from '../index.js';
+import gendiff from '../scr/index.js';
 
 program
   .version('0.1.0')

@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-
+    
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -22,8 +22,7 @@ jobs:
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.2.0
         env:
-           CC_TEST_REPORTER_ID: 299d18e9df944440a7134029477e2e07df3d6c51f35e65155e3a435ad0666c8e
-           JACOCO_SOURCE_PATH: app/src/main/node
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-           coverageCommand: make report
-           coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
+          coverageCommand: make test-coverage
+          debug: true

@@ -1,4 +1,5 @@
-{
+{    
+    "main": "scr/index.js",
     "name": "@hexlet/code",
     "version": "0.1.0",
     "description": "Hexlet frontend lvl 2",

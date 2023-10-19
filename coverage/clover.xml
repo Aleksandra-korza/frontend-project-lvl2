@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1697734761648" clover="3.2.0">
-  <project timestamp="1697734761648" name="All files">
-    <metrics statements="186" coveredstatements="183" conditionals="56" coveredconditionals="54" methods="13" coveredmethods="13" elements="255" coveredelements="250" complexity="0" loc="186" ncloc="186" packages="2" files="8" classes="8"/>
+<coverage generated="1697735218766" clover="3.2.0">
+  <project timestamp="1697735218766" name="All files">
+    <metrics statements="184" coveredstatements="179" conditionals="57" coveredconditionals="54" methods="13" coveredmethods="13" elements="254" coveredelements="246" complexity="0" loc="184" ncloc="184" packages="2" files="8" classes="8"/>
     <package name="scr">
-      <metrics statements="20" coveredstatements="20" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <metrics statements="18" coveredstatements="18" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <file name="index.js" path="/home/ubuntu/frontend-project-lvl2/scr/index.js">
-        <metrics statements="20" coveredstatements="20" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <metrics statements="18" coveredstatements="18" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="6" count="7" type="cond" truecount="1" falsecount="0"/>
-        <line num="7" count="7" type="stmt"/>
-        <line num="8" count="7" type="stmt"/>
-        <line num="9" count="7" type="stmt"/>
-        <line num="10" count="7" type="stmt"/>
-        <line num="11" count="7" type="stmt"/>
-        <line num="12" count="7" type="stmt"/>
-        <line num="13" count="7" type="stmt"/>
-        <line num="14" count="7" type="stmt"/>
-        <line num="15" count="7" type="stmt"/>
+        <line num="6" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
       </file>
     </package>
     <package name="scr.formatters">
-      <metrics statements="166" coveredstatements="163" conditionals="55" coveredconditionals="53" methods="12" coveredmethods="12"/>
+      <metrics statements="166" coveredstatements="161" conditionals="56" coveredconditionals="53" methods="12" coveredmethods="12"/>
       <file name="buildNewObj.js" path="/home/ubuntu/frontend-project-lvl2/scr/formatters/buildNewObj.js">
         <metrics statements="26" coveredstatements="26" conditionals="11" coveredconditionals="11" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
@@ -90,10 +88,10 @@
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="6" count="14" type="stmt"/>
-        <line num="7" count="14" type="stmt"/>
-        <line num="8" count="14" type="stmt"/>
-        <line num="9" count="14" type="stmt"/>
+        <line num="6" count="12" type="stmt"/>
+        <line num="7" count="12" type="stmt"/>
+        <line num="8" count="12" type="stmt"/>
+        <line num="9" count="12" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
       </file>
@@ -139,22 +137,22 @@
         <line num="38" count="1" type="stmt"/>
       </file>
       <file name="selectFileExtension.js" path="/home/ubuntu/frontend-project-lvl2/scr/formatters/selectFileExtension.js">
-        <metrics statements="17" coveredstatements="17" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>
+        <metrics statements="17" coveredstatements="15" conditionals="6" coveredconditionals="5" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="5" count="14" type="cond" truecount="1" falsecount="0"/>
+        <line num="5" count="12" type="cond" truecount="1" falsecount="0"/>
         <line num="6" count="7" type="stmt"/>
         <line num="7" count="7" type="stmt"/>
-        <line num="8" count="7" type="stmt"/>
-        <line num="9" count="7" type="stmt"/>
-        <line num="10" count="14" type="cond" truecount="2" falsecount="0"/>
-        <line num="11" count="6" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
-        <line num="13" count="6" type="cond" truecount="1" falsecount="0"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
+        <line num="8" count="7" type="cond" truecount="1" falsecount="0"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="cond" truecount="0" falsecount="1"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
       </file>

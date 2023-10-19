@@ -7,3 +7,4 @@ publish: #Для отладки публикации не нужно добав�
 lint: #проверка кода по стандарту Airbnb
 	npx eslint . --fix
 
+make: *** No rule to make target 'report'.  Stop.

@@ -1,4 +1,3 @@
-// import path from 'path';
 import selectFormat from './formatters/index.js';
 import takeData from './formatters/parses.js';
 import buildNewObj from './formatters/buildNewObj.js';
@@ -11,8 +10,5 @@ function gendiff(file1, file2, format) {
 
   return selectFormat(tree, format);
 }
-
-//   return 'The program does not work with this format';
-// }
 
 export default gendiff;

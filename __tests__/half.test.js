@@ -25,10 +25,6 @@ test.each([
   {
     file1: 'file1.yml', file2: 'file2.yaml', formatter: 'plain', expected: 'resultPlain.txt',
   },
-  // {
-  //   file1: 'file1.yml', file2: 'resultTxt.txt',
-  //   formatter: 'plain', expected: 'resultTxt.txt',
-  // },
   {
     file1: 'file1.json', file2: 'file2.json', formatter: 'json', expected: 'resultJson.txt',
   },

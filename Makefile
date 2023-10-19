@@ -13,11 +13,10 @@ test-coverage:
 test:
 	npm run test
 
-	install: install-deps
+install: install-deps
 	npx simple-git-hooks
 
 run:
 	bin/nodejs-package.js 10
-
 
 .PHONY: test

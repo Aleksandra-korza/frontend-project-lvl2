@@ -24,4 +24,4 @@ jobs:
         env:
            CC_TEST_REPORTER_ID: 299d18e9df944440a7134029477e2e07df3d6c51f35e65155e3a435ad0666c8e
         with:
-           coverageCommand: make report
+           coverageCommand: yarn coverage

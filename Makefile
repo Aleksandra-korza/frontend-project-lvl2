@@ -8,3 +8,6 @@ lint: #проверка кода по стандарту Airbnb
 	npx eslint . --fix
 
 make: *** No rule to make target 'report'.  Stop.
+
+test-coverage:
+	npx jest --coverage

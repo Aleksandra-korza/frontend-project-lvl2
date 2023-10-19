@@ -1,5 +1,5 @@
 import yaml from 'js-yaml';
-import * as path from 'path';
+import path from 'path';
 
 const selectFileExtension = (filepath, file) => {
   if (path.extname(filepath) === '.json') {

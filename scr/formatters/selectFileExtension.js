@@ -11,7 +11,8 @@ const selectFileExtension = (filepath, file) => {
     const obj = yaml.load(file); // расп.файлы yaml.load(file):из yamlстроки->в видобj
     return obj;
   }
- return 'Unknown file extension.';
+  
+  return 'Unknown file extension.';
 };
 
 export default selectFileExtension;

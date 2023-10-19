@@ -10,4 +10,12 @@ lint: #проверка кода по стандарту Airbnb
 make: *** No rule to make target 'report'.  Stop.
 
 test-coverage:
-	npx jest --coverage
+	npm test -- --coverage --coverageProvider=v8
+
+test:
+	npm test
+
+publish:
+	npm publish
+
+.PHONY: test

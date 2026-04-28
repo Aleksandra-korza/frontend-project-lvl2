@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { program } from 'commander'
-import gendiff from '../scr/index.js'
+import gendiff from '../src/index.js'
 
 program
   .version('0.1.0')

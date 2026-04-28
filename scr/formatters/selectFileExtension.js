@@ -3,7 +3,7 @@ import path from 'path'
 
 const selectFileExtension = (filepath, file) => {
   if (path.extname(filepath) === '.json') {
-    const obj = JSON.parse(file); // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
+    const obj = JSON.parse(file) // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
     return obj
   }
 

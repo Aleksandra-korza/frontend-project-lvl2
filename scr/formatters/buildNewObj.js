@@ -16,11 +16,11 @@ const buildNewObj = (obj1, obj2) => {
     if (!lodash.isEqual(obj1[key], obj2[key])) {
       return {
         key, type: 'changed', value1: obj1[key], value2: obj2[key],
-      };
+      }
     }
 
     return { key, type: 'unchanged', value: obj1[key] }
-  });
-};
+  })
+}
 
 export default buildNewObj

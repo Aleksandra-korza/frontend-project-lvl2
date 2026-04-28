@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { program } from 'commander';
-import gendiff from '../scr/index.js';
+import { program } from 'commander'
+import gendiff from '../scr/index.js'
 
 program
   .version('0.1.0')
@@ -12,4 +12,4 @@ program
   .action((filepath1, filepath2) => console.log(
     gendiff(filepath1, filepath2, program.opts().format),
   ))
-  .parse();
+  .parse()

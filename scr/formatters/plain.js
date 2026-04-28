@@ -5,7 +5,7 @@ const stringify = (value) => {
     return '[complex value]'
   }
   return lodash.isString(value) ? `'${value}'` : value
-};
+}
 
 const plain = (newObj1) => {
   const styl = (obj, paths) => obj.flatMap((miniObj) => {
@@ -18,7 +18,7 @@ const plain = (newObj1) => {
       return (`Property '${path}' was removed`)
     }
     if (miniObj.type === 'unchanged') {
-      return [];
+      return []
     }
     if (miniObj.type === 'changed') {
       return (`Property '${path}' was updated. From ${stringify(miniObj.value1)} to ${stringify(miniObj.value2)}`)

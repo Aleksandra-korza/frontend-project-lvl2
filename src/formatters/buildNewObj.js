@@ -3,7 +3,7 @@ import lodash from 'lodash'
 const buildNewObj = (obj1, obj2) => {
   const keys = lodash.sortBy(lodash.union(lodash.keys(obj1), lodash.keys(obj2)))
 
-  return keys.map((key) => {
+  return keys.map(key => {
     if (!lodash.has(obj1, key)) {
       return { key, type: 'added', value: obj2[key] }
     }

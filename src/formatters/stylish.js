@@ -19,7 +19,7 @@ const signs = {
 
 const stylish = (newObj1, replacer = '    ') => {
   function styl(obj, depth) {
-    const styleLine = obj.map((miniObj) => {
+    const styleLine = obj.map(miniObj => {
       const indent = replacer.repeat(depth)
 
       const indentForSign = indent.slice(2)

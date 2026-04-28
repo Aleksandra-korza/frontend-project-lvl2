@@ -1,5 +1,5 @@
 TN:
-SF:scr/index.js
+SF:src/index.js
 FN:6,gendiff
 FNF:1
 FNH:1
@@ -29,7 +29,7 @@ BRF:1
 BRH:1
 end_of_record
 TN:
-SF:scr/formatters/buildNewObj.js
+SF:src/formatters/buildNewObj.js
 FN:3,buildNewObj
 FNF:1
 FNH:1
@@ -77,7 +77,7 @@ BRF:11
 BRH:11
 end_of_record
 TN:
-SF:scr/formatters/index.js
+SF:src/formatters/index.js
 FN:5,selectFormat
 FNF:1
 FNH:1
@@ -108,7 +108,7 @@ BRF:5
 BRH:5
 end_of_record
 TN:
-SF:scr/formatters/json.js
+SF:src/formatters/json.js
 FN:1,json
 FNF:1
 FNH:1
@@ -123,7 +123,7 @@ BRF:1
 BRH:1
 end_of_record
 TN:
-SF:scr/formatters/parses.js
+SF:src/formatters/parses.js
 FN:5,takeData
 FNF:1
 FNH:1
@@ -146,7 +146,7 @@ BRF:1
 BRH:1
 end_of_record
 TN:
-SF:scr/formatters/plain.js
+SF:src/formatters/plain.js
 FN:3,stringify
 FN:10,plain
 FN:11,styl
@@ -215,7 +215,7 @@ BRF:16
 BRH:15
 end_of_record
 TN:
-SF:scr/formatters/selectFileExtension.js
+SF:src/formatters/selectFileExtension.js
 FN:4,selectFileExtension
 FNF:1
 FNH:1
@@ -249,7 +249,7 @@ BRF:6
 BRH:5
 end_of_record
 TN:
-SF:scr/formatters/stylish.js
+SF:src/formatters/stylish.js
 FN:3,stringify
 FN:20,stylish
 FN:21,styl

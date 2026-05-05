@@ -1,40 +1,42 @@
+# Name of workflow
 name: Node CI
 
+# Trigger the workflow on push or pull request
 on:
   - push
   - pull_request
 
+env:
+  CI: true
+
 jobs:
   build:
+
+    # The type of machine to run the job on
     runs-on: ubuntu-latest
 
     strategy:
+      # Node versions list
       matrix:
-        node-version: [18.x]
+        node-version: [24.x]
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
+        # Check-out repository under GitHub workspace
+        # https://github.com/actions/checkout
+      - uses: actions/checkout@v6
+        # Step's name
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        # Configures the node version used on GitHub-hosted runners
+        # https://github.com/actions/setup-node
+        uses: actions/setup-node@v6
+        # The Node.js version to configure
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-
-      - name: Install dependencies
-        run: make install
-
-      - name: Run linter
-        run: make lint
-
-      - name: Test & publish code coverage
-        # Используем стандартный способ загрузки через встроенную утилиту
-        run: |
-          wget -O ./cc-test-reporter https://github.com/codeclimate/test-reporter/releases/download/v0.11.1/test-reporter-0.11.1-linux-amd64
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
-          make test-coverage
-          ./cc-test-reporter after-build --exit-code $?
+      - run: make install
+      - run: make lint
+      - run: make test-coverage
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v7
         env:
-          CC_TEST_REPORTER_ID: 299d18e9df944440a7134029477e2e07df3d6c51f35e65155e3a435ad0666c8e
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

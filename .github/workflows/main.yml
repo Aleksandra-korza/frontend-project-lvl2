@@ -29,13 +29,12 @@ jobs:
         run: make lint
 
       - name: Test & publish code coverage
+        # Используем стандартный способ загрузки через встроенную утилиту
         run: |
-          # Скачиваем репортер с GitHub Releases, где он точно лежит
-          curl -L https://github.com/codeclimate/test-reporter/releases/download/v0.11.1/test-reporter-0.11.1-linux-amd64 > ./cc-test-reporter
+          wget -O ./cc-test-reporter https://github.com/codeclimate/test-reporter/releases/download/v0.11.1/test-reporter-0.11.1-linux-amd64
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
           make test-coverage
           ./cc-test-reporter after-build --exit-code $?
         env:
-          # Твой ID уже вшит в команду
           CC_TEST_REPORTER_ID: 299d18e9df944440a7134029477e2e07df3d6c51f35e65155e3a435ad0666c8e

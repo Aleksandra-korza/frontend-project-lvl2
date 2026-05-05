@@ -13,7 +13,8 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -28,10 +29,18 @@ jobs:
         run: make lint
 
       - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v9.0.0
+        run: |
+          # Скачиваем репортер напрямую
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          # Даем права на выполнение
+          chmod +x ./cc-test-reporter
+          # Подготовка
+          ./cc-test-reporter before-build
+          # Запуск тестов с генерацией LCOV
+          make test-coverage
+          # Отправка результата. Команда вернет статус 0 даже если тесты упали, 
+          # поэтому используем --exit-code $? для корректного завершения.
+          ./cc-test-reporter after-build --exit-code $?
         env:
+          # Твой ID уже вшит в команду
           CC_TEST_REPORTER_ID: 299d18e9df944440a7134029477e2e07df3d6c51f35e65155e3a435ad0666c8e
-        with:
-          coverageCommand: make test-coverage
-          # Добавляем прямую ссылку на скачивание, чтобы обойти ошибку 404
-          downloadUrl: https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64

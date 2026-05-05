@@ -30,16 +30,11 @@ jobs:
 
       - name: Test & publish code coverage
         run: |
-          # Скачиваем репортер напрямую
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          # Даем права на выполнение
+          # Скачиваем репортер с GitHub Releases, где он точно лежит
+          curl -L https://github.com/codeclimate/test-reporter/releases/download/v0.11.1/test-reporter-0.11.1-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
-          # Подготовка
           ./cc-test-reporter before-build
-          # Запуск тестов с генерацией LCOV
           make test-coverage
-          # Отправка результата. Команда вернет статус 0 даже если тесты упали, 
-          # поэтому используем --exit-code $? для корректного завершения.
           ./cc-test-reporter after-build --exit-code $?
         env:
           # Твой ID уже вшит в команду

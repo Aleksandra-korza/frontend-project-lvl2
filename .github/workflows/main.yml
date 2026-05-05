@@ -41,13 +41,12 @@ jobs:
         run: make test-coverage
 
       - name: SonarQube Scan
-        # Используем актуальную версию экшена
-        uses: SonarSource/sonarqube-scan-action@v4
+        uses: sonarsource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=aleksandra-korza_project-2
+            -Dsonar.projectKey=Aleksandra-korza_frontend-project-lvl2
             -Dsonar.organization=aleksandra-korza
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info

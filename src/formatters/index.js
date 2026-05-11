@@ -3,13 +3,17 @@ import plain from './plain.js'
 import json from './json.js'
 
 const selectFormat = (diffArr, style) => {
-  if (style === 'plain') {
-    return plain(diffArr)
+  switch (style) {
+    case 'plain':
+      return plain(diffArr)
+
+    case 'json':
+      return json(diffArr)
+
+    default:
+      console.error(`Unknown format: ${style}`)
+      return stylish(diffArr)
   }
-  if (style === 'json') {
-    return json(diffArr)
-  }
-  return stylish(diffArr)
 }
 
 export default selectFormat

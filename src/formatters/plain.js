@@ -11,23 +11,25 @@ const plain = (newObj1) => {
   const styl = (obj, paths) => obj.flatMap((miniObj) => {
     const path = [...paths, miniObj.key].join('.')
 
-    if (miniObj.type === 'added') {
-      return (`Property '${path}' was added with value: ${stringify(miniObj.value)}`)
-    }
-    if (miniObj.type === 'removed') {
-      return (`Property '${path}' was removed`)
-    }
-    if (miniObj.type === 'unchanged') {
-      return []
-    }
-    if (miniObj.type === 'changed') {
-      return (`Property '${path}' was updated. From ${stringify(miniObj.value1)} to ${stringify(miniObj.value2)}`)
-    }
-    if (miniObj.type === 'nested') {
-      return `${styl(miniObj.value, [path]).join('\n')}`
-    }
+    switch (miniObj.type) {
+      case 'added':
+        return (`Property '${path}' was added with value: ${stringify(miniObj.value)}`)
 
-    return `Type: ${miniObj.type} is undefined`
+      case 'removed':
+        return (`Property '${path}' was removed`)
+
+      case 'unchanged':
+        return []
+
+      case 'changed':
+        return (`Property '${path}' was updated. From ${stringify(miniObj.value1)} to ${stringify(miniObj.value2)}`)
+
+      case 'nested':
+        return `${styl(miniObj.value, [path]).join('\n')}`
+
+      default:
+        return `Type: ${miniObj.type} is undefined`
+    }
   })
 
   const stylishDiff = styl(newObj1, [])

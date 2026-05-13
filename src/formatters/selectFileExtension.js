@@ -2,16 +2,18 @@ import yaml from 'js-yaml'
 import path from 'path'
 
 const selectFileExtension = (filepath, file) => {
-  if (path.extname(filepath) === '.json') {
-    const obj = JSON.parse(file) // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
-    return obj
-  }
+  switch (path.extname(filepath)) {
+    case '.json':
+    return JSON.parse(file) // расп. файлы JSON.parse(file1):изJSON строки->в вид обj
 
-  if (path.extname(filepath) === '.yml' || path.extname(filepath) === '.yaml') {
-    const obj = yaml.load(file) // расп.файлы yaml.load(file):из yamlстроки->в видобj
-    return obj
-  }
-  return 'Unknown file extension.'
+    case '.yml':
+    case'.yaml':
+    return yaml.load(file) // расп.файлы yaml.load(file):из yamlстроки->в видобj
+
+    default:
+          console.error(`Unknown file extension.`)
+          return 'Unknown file extension.'
+}
 }
 
 export default selectFileExtension

@@ -28,23 +28,26 @@ const stylish = (newObj1, replacer = '    ') => {
         return (`${indentForSign}${sign} ${miniObj.key}: ${stringify(value, depth, replacer)}`)
       }
 
-      if (miniObj.type === 'added') {
-        return makeLine(miniObj.value, signs.added)
+      switch (miniObj.type) {
+        case 'added':
+          return makeLine(miniObj.value, signs.added)
+
+        case 'removed':
+          return makeLine(miniObj.value, signs.removed)
+
+        case 'unchanged':
+          return makeLine(miniObj.value, signs.unchanged)
+
+        case 'changed':
+          return [`${makeLine(miniObj.value1, signs.removed)}`,
+            `${makeLine(miniObj.value2, signs.added)}`].join('\n')
+
+        case 'nested':
+          return `${indent}${miniObj.key}: ${['{', ...styl(miniObj.value, depth + 1), `${indent}}`].join('\n')}`
+
+        default:
+          return `Type: ${miniObj.type} is undefined`
       }
-      if (miniObj.type === 'removed') {
-        return makeLine(miniObj.value, signs.removed)
-      }
-      if (miniObj.type === 'unchanged') {
-        return makeLine(miniObj.value, signs.unchanged)
-      }
-      if (miniObj.type === 'changed') {
-        return [`${makeLine(miniObj.value1, signs.removed)}`,
-          `${makeLine(miniObj.value2, signs.added)}`].join('\n')
-      }
-      if (miniObj.type === 'nested') {
-        return `${indent}${miniObj.key}: ${['{', ...styl(miniObj.value, depth + 1), `${indent}}`].join('\n')}`
-      }
-      return `Type: ${miniObj.type} is undefined`
     })
     return styleLine
   }
